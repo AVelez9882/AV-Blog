@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+	<meta charset="utf-8">
+	<title>The Code Cat Blog</title>
+
+	<!-- mobile responsive meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- ** Plugins Needed for the Project ** -->
+	<!-- Bootstrap -->
+	<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+	<!-- slick slider -->
+	<link href="~/Content/slick.css" rel="stylesheet" />
+	<!-- themefy-icon -->
+	<link href="~/Content/themify-icons.css" rel="stylesheet" />
+
+	<!-- Main Stylesheet -->
+	<link href="~/Content/style.css" rel="stylesheet" />
+
+	<!--Favicon-->
+	<link rel="icon" href="~/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+	<!-- preloader -->
+	<div class="preloader">
+		<div class="loader">
+			<span class="dot"></span>
+			<div class="dots">
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		</div>
+	</div>
+	<!-- /preloader -->
+	<!-- dividers -->
+	<div class="dividers">
+		<div class="divider"></div>
+		<div class="divider"></div>
+		<div class="divider"></div>
+		<div class="divider"></div>
+	</div>
+
+	<header class="navigation">
+		<nav class="navbar navbar-expand-lg navbar-light">
+			<a class="navbar-brand"><img class="img-fluid" src="~/Images/CodeCat.png" alt="parsa"></a>
+			<button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navogation"
+					aria-controls="navogation" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse text-center" id="navogation">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<a class="nav-link text-uppercase text-dark" @Html.ActionLink("Home", "Index", "Home")</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-uppercase text-dark" @Html.ActionLink("About", "About", "Home")</a>
+					</li>
+					@*<li class="nav-item">
+						<a class="nav-link text-uppercase text-dark" href="category.html">Categories</a>
+					</li>*@
+					<li class="nav-item">
+						<a class="nav-link text-uppercase text-dark" @Html.ActionLink("Contact", "Contact", "Home")</a>
+					</li>
+					<li class="text-uppercase text-dark">
+						@Html.Partial("_LoginPartial")
+					</li>
+					@if (ViewContext.HttpContext.User.IsInRole("Admin"))
+					{
+						<a class="nav-link text-uppercase text-dark" @Html.ActionLink("Create", "Create", "BlogPosts")></a>
+					}
+				</ul>
+				<form class="form-inline position-relative ml-lg-4">
+					<input class="form-control px-0 w-100" type="search" placeholder="Search">
+					<!-- <button class="search-icon" type="submit"><i class="ti-search text-dark"></i></button> -->
+					<a href="search.html" class="search-icon"><i class="ti-search text-dark"></i></a>
+				</form>
+			</div>
+		</nav>
+	</header>
+
+	@RenderBody()
+
+	<footer class="bg-secondary">
+		<div class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3 col-sm-6 mb-4 mb-md-0">
+						<a href="index.html"><img src="~/Images/CodeCat.png" alt="persa" class="img-fluid"></a>
+					</div>
+					<div class="col-md-3 col-sm-6 mb-4 mb-md-0">
+						<h6>Address</h6>
+						<ul class="list-unstyled">
+							<li class="font-secondary text-dark">Sydney</li>
+							<li class="font-secondary text-dark">6 rip carl Avenue CA 90733</li>
+						</ul>
+					</div>
+					<div class="col-md-3 col-sm-6 mb-4 mb-md-0">
+						<h6>Contact Info</h6>
+						<ul class="list-unstyled">
+							<li class="font-secondary text-dark">Tel: +90 000 333 22</li>
+							<li class="font-secondary text-dark">Mail: exmaple@ymail.com</li>
+						</ul>
+					</div>
+					<div class="col-md-3 col-sm-6 mb-4 mb-md-0">
+						<h6 class="text-center">Portfolio</h6>
+						<ul class="list-inline d-inline-block">
+							<li class="list-inline-item"><a href="https://av-portfolio.netlify.app" target="_blank" class="text-dark"><img src="~/Images/android-chrome-192x192.png"</a></li>
+							@*<li class="list-inline-item"><a href="#" class="text-dark"><i class="ti-twitter-alt"></i></a></li>
+							<li class="list-inline-item"><a href="#" class="text-dark"><i class="ti-linkedin"></i></a></li>
+							<li class="list-inline-item"><a href="#" class="text-dark"><i class="ti-github"></i></a></li>*@
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="text-center pb-3">
+			<p class="mb-0">
+				Copyright ©
+				<script>
+					var CurrentYear = new Date().getFullYear()
+					document.write(CurrentYear)</script> a theme by  <a href="https://themefisher.com/">themefisher.com</a>
+			</p>
+		</div>
+	</footer>
+
+	<!-- jQuery -->
+	<script src="~/Scripts/jquery.min.js"></script>
+	<!-- Bootstrap JS -->
+	<script src="~/Scripts/bootstrap.min.js"></script>
+	<!-- slick slider -->
+	<script src="~/Scripts/slick.min.js"></script>
+	<!-- masonry -->
+	<script src="~/Scripts/masonry.js"></script>
+	<!-- instafeed -->
+	<script src="~/Scripts/instafeed.min.js"></script>
+	<!-- smooth scroll -->
+	<script src="~/Scripts/smooth-scroll.js"></script>
+	<!-- headroom -->
+	<script src="~/Scripts/headroom.js"></script>
+	<!-- reading time -->
+	<script src="~/Scripts/readingTime.min.js"></script>
+
+	<!-- Main Script -->
+	<script src="~/Scripts/script.js"></script>
+
+	@RenderSection("scripts", required: false)
+</body>
+</html>
