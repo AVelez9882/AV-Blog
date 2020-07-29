@@ -114,9 +114,57 @@
 	</section>
 	<!-- /blog single -->
 
+
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-10 col-offset-1">
+				@foreach (var comment in Model.Comments.OrderByDescending(c => c.Created))
+				{
+					<p id="comment-@comment.Id">@Html.Raw(comment.CommentBody)</p>
+					if (comment.AuthorId != null)
+					{
+						<p>By: @comment.Author.DisplayName on @comment.Created.ToString("MMM dd, yyyy")</p>
+					}
+					if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+					{
+						@Html.ActionLink("Edit Comment", "Edit", "Comment", new { id = comment.Id }, new { @class = "btn btn-warning" })
+						@Html.ActionLink("Delete Comment", "Delete", "Comment", new { id = comment.Id }, new { @class = "btn btn-warning" })
+					}
+					<hr />
+				}
+			</div>
+		</div>
+	</div>
+
+
+	@if (User.Identity.IsAuthenticated)
+	 {
+		<div class="container-fluid justify-content-md-center">
+			<div class="row">
+				<div class="col-6 col-offset-3">
+					@using (Html.BeginForm("Create", "Comments", FormMethod.Post))
+					 {
+						@Html.AntiForgeryToken()
+						@Html.Hidden("BlogPostId", Model.Id)
+						@Html.Hidden("Slug", Model.Slug)
+						<div class="row">
+							@Html.TextArea("CommentBody", new { row = 10, cols = 100 })
+						</div>
+						<div class="row">
+							<button type="submit" class="btn btn-danger">Submit Comment</button>
+						</div>
+					 }
+				</div>
+			</div>
+		</div>
+	 }
+
+
 </body>
 </html>
 <p>
 	@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
 	@Html.ActionLink("Back to List", "Index")
 </p>
+

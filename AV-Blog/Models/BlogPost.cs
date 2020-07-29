@@ -8,11 +8,6 @@ namespace AV_Blog.Models
 {
 	public class BlogPost
 	{
-		public BlogPost()
-		{
-			Comment = new HashSet<Comment>();
-		}
-
 		public int Id { get; set; }
 		public DateTime Created { get; set; }
 		public DateTime? Updated { get; set; }
@@ -24,6 +19,12 @@ namespace AV_Blog.Models
 		public string MediaURL { get; set; }
 		public bool Published { get; set; }
 
-		public virtual ICollection<Comment> Comment { get; set; }
+		public virtual ICollection<Comment> Comments { get; set; }
+
+		public BlogPost()
+		{
+			Comments = new HashSet<Comment>();
+		}
+
 	}
 }

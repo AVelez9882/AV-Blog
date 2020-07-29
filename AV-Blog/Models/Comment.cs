@@ -14,7 +14,8 @@ namespace AV_Blog.Models
 		//Foreign Key (FK) - This is how I refer to the user that left the comment. 
 		public string AuthorId { get; set; }
 		//This is how i record and store the content of the comment.
-		public string Body { get; set; }
+		[AllowHTML]
+		public string CommentBody { get; set; }
 		public DateTime Created { get; set; }
 		public DateTime? Updated { get; set; }
 		public string UpdateReason { get; set; }

@@ -9,6 +9,8 @@ using System.Web;
 using System.Web.Mvc;
 using AV_Blog.Helpers;
 using AV_Blog.Models;
+using PagedList;
+using PagedList.Mvc;
 
 namespace AV_Blog.Controllers
 {
@@ -17,23 +19,51 @@ namespace AV_Blog.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: BlogPosts
-        public ActionResult Index()
+        public ActionResult Index(int? page, string searchStr)
         {
-            return View(db.BlogPosts.ToList());
+            ViewBag.Search = searchStr;
+            var blogList = IndexSearch(searchStr);
+
+            int pageSize = 3; //specifies the number of posts per page 
+            int pageNumber = (page ?? 1); //?? null coalescing operator
+
+            var model = blogList.ToPagedList(pageNumber, pageSize);
+            return View(model);
+        }
+
+        public IQueryable<BlogPost> IndexSearch(string searchStr)
+        {
+            IQueryable<BlogPost> result = null;
+            if (searchStr != null)
+            {
+                result = db.BlogPosts.AsQueryable();
+                result = result.Where(b => b.Title.Contains(searchStr) ||
+                                           b.Body.Contains(searchStr) ||
+                                           b.Comments.Any(c => c.CommentBody.Contains(searchStr) ||
+                                                          c.Author.FirstName.Contains(searchStr) ||
+                                                          c.Author.LastName.Contains(searchStr) ||
+                                                          c.Author.DisplayName.Contains(searchStr) ||
+                                                          c.Author.Email.Contains(searchStr)));
+            }
+            else
+            {
+                result = db.BlogPosts.AsQueryable();
+            }
+            return result.OrderByDescending(p => p.Created);
         }
 
         // GET: BlogPosts/Details/5
         public ActionResult Details(string slug)
         {
-            if (String.IsNullOrWhiteSpace(slug))
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            //if (String.IsNullOrWhiteSpace(slug))
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
             BlogPost blogPost = db.BlogPosts.FirstOrDefault(b => b.Slug == slug);
-            if (blogPost == null)
-            {
-                return HttpNotFound();
-            }
+            //if (blogPost == null)
+            //{
+            //    return HttpNotFound();
+            //}
             return View(blogPost);
         }
 

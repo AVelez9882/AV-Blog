@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AV_Blog.Models;
+using Microsoft.AspNet.Identity;
 
 namespace AV_Blog.Controllers
 {
@@ -22,13 +23,13 @@ namespace AV_Blog.Controllers
         }
 
         // GET: Comments/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(string slug)
         {
-            if (id == null)
+            if (slug == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Comment comment = db.Comments.Find(id);
+            Comment comment = db.Comments.Find(slug);
             if (comment == null)
             {
                 return HttpNotFound();
@@ -49,18 +50,19 @@ namespace AV_Blog.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,BlogPostId,AuthorId,Body,Created,Updated,UpdateReason")] Comment comment)
+        public ActionResult Create(string commentBody, int blogPostId, string slug)
         {
-            if (ModelState.IsValid)
+            var comment = new Comment
             {
-                db.Comments.Add(comment);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                CommentBody = commentBody,
+				Created = DateTime.Now,
+				BlogPostId = blogPostId,
+                AuthorId = User.Identity.GetUserId()
+            };
 
-            ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName", comment.AuthorId);
-            ViewBag.BlogPostId = new SelectList(db.BlogPosts, "Id", "Title", comment.BlogPostId);
-            return View(comment);
+            db.Comments.Add(comment);
+            db.SaveChanges();
+            return RedirectToAction("Details", "BlogPosts", new { slug });
         }
 
         // GET: Comments/Edit/5
