@@ -152,7 +152,14 @@ namespace AV_Blog.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, DisplayName = model.DisplayName };
+                var user = new ApplicationUser { 
+                    UserName = model.Email, 
+                    Email = model.Email, 
+                    FirstName = model.FirstName, 
+                    LastName = model.LastName, 
+                    DisplayName = model.DisplayName 
+                };
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
