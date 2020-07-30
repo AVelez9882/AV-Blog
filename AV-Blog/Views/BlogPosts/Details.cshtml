@@ -128,8 +128,8 @@
 					}
 					if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
 					{
-						@Html.ActionLink("Edit Comment", "Edit", "Comment", new { id = comment.Id }, new { @class = "btn btn-warning" })
-						@Html.ActionLink("Delete Comment", "Delete", "Comment", new { id = comment.Id }, new { @class = "btn btn-warning" })
+						@Html.ActionLink("Edit Comment", "Edit", "Comments", new { id = comment.Id }, new { @class = "btn btn-warning" })
+						@Html.ActionLink("Delete Comment", "Delete", "Comments", new { id = comment.Id }, new { @class = "btn btn-warning" })
 					}
 					<hr />
 				}

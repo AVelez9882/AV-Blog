@@ -14,6 +14,7 @@ using PagedList.Mvc;
 
 namespace AV_Blog.Controllers
 {
+    [RequireHttps]
     public class BlogPostsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

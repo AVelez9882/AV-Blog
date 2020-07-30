@@ -10,6 +10,7 @@ using AV_Blog.Models;
 
 namespace AV_Blog.Controllers
 {
+    [RequireHttps]
     [Authorize]
     public class ManageController : Controller
     {

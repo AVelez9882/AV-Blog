@@ -7,6 +7,7 @@ using AV_Blog.Models;
 
 namespace AV_Blog.Controllers
 {
+	[RequireHttps]
 	public class HomeController : Controller
 	{
 		private ApplicationDbContext db = new ApplicationDbContext();

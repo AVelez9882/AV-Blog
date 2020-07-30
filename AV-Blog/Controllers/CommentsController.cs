@@ -7,10 +7,12 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AV_Blog.Models;
+using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 
 namespace AV_Blog.Controllers
 {
+    [RequireHttps]
     public class CommentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -52,6 +54,11 @@ namespace AV_Blog.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(string commentBody, int blogPostId, string slug)
         {
+            if (commentBody.Length == 0 || commentBody.IsNullOrWhiteSpace())
+            {
+                return RedirectToAction("Details", "BlogPosts", new { slug });
+            }
+
             var comment = new Comment
             {
                 CommentBody = commentBody,
