@@ -36,9 +36,12 @@
 				{
 					<article data-file="articles/b.html" data-target="article" class="article-full-width">
 						<div class="post-image">
-							<a href="@Url.Action("Details", "BlogPosts", new { slug = post.Slug })">
-								<img class="img-fluid" src="~/Images/masonary-post/post-2.jpg" alt="post-thumb">
-							</a>
+							<div>
+								@if (post.MediaURL != null)
+								{
+									<img class="img-responsive" src="@post.MediaURL" alt="" />
+								}
+							</div>
 						</div>
 						<div class="post-content">
 							<ul class="list-inline d-flex justify-content-between border-bottom post-meta pb-2 mb-4">
