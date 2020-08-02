@@ -36,27 +36,31 @@
 				{
 					<article data-file="articles/b.html" data-target="article" class="article-full-width">
 						<div class="post-image">
-							<div>
-								@if (post.MediaURL != null)
-								{
-									<img class="img-responsive" src="@post.MediaURL" alt="" />
-								}
+							<div class="row">
+								<div class="col-6">
+									@if (post.MediaURL != null)
+									{
+										<img class="img-responsive" src="@post.MediaURL" alt="" />
+									}
+								</div>
 							</div>
 						</div>
-						<div class="post-content">
-							<ul class="list-inline d-flex justify-content-between border-bottom post-meta pb-2 mb-4">
-								<li class="list-inline-item">@post.Created.ToString("MMM dd, yyyy")</li>
-								<li class="list-inline-item"><span class="eta">8 min</span> read</li>
-							</ul>
-							<h4 class="mb-4">
-								<a class="text-dark" href="@Url.Action("Details", "BlogPosts", new { slug = post.Slug })">
-									@post.Title
-								</a>
-							</h4>
-							<p class="mb-0 post-summary" href="@Url.Action("Details", "BlogPosts", new { slug = post.Slug })">
-								@post.Abstract
-							</p>
-							<a class="btn btn-transparent mb-4" href="@Url.Action("Details", "BlogPosts", new { slug = post.Slug})">Continue...</a>
+						<div class="row post-content">
+							<div class="col-6">
+								<ul class="list-inline d-flex justify-content-between border-bottom post-meta pb-2 mb-4">
+									<li class="list-inline-item">@post.Created.ToString("MMM dd, yyyy")</li>
+									<li class="list-inline-item"><span class="eta">8 min</span> read</li>
+								</ul>
+								<h4 class="mb-4">
+									<a class="text-dark" href="@Url.Action("Details", "BlogPosts", new { slug = post.Slug })">
+										@post.Title
+									</a>
+								</h4>
+								<p class="mb-0 post-summary" href="@Url.Action("Details", "BlogPosts", new { slug = post.Slug })">
+									@post.Abstract
+								</p>
+								<a class="btn btn-transparent mb-4" href="@Url.Action("Details", "BlogPosts", new { slug = post.Slug})">Continue...</a>
+							</div>
 						</div>
 					</article>
 				}

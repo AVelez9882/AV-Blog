@@ -81,7 +81,7 @@ namespace AV_Blog.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Title,Body,Abstract,MediaURL,Published")] BlogPost blogPost, HttpPostedFileBase image)
+        public ActionResult Create([Bind(Include = "Title,Body,Abstract,MediaURL,Published,Created,Updated")] BlogPost blogPost, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
@@ -141,7 +141,7 @@ namespace AV_Blog.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Title,Body,Abstract,MediaURL, Published")] BlogPost blogPost, HttpPostedFileBase image)
+        public ActionResult Edit([Bind(Include = "Title,Body,Abstract,MediaURL,Published,Created,Updated")] BlogPost blogPost, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
@@ -153,14 +153,13 @@ namespace AV_Blog.Controllers
                         ModelState.AddModelError("Title", "Invalid Title");
                         return View(blogPost);
                     }
-                    if (db.BlogPosts.Any(p => p.Slug == slug))
+                    if (db.BlogPosts.Any(p => p.Slug == slug) && db.BlogPosts.Where())
                     {
                         ModelState.AddModelError("Title", "The title must be unique.");
                         return View(blogPost);
                     }
 
                     blogPost.Slug = slug;
-
                 }
 
                 if (ImageUploadValidator.IsWebFriendlyImage(image))
