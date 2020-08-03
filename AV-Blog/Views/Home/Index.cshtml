@@ -7,10 +7,22 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-6 align-self-end">
-				<h1 class="mb-0">Welcome</h1>
-				<h2 class="mb-100 title-border-lg">to the<i>Code Cat Blog!</i></h2>
+				<h1 class="mb-0" style="font-family:monospace ">Welcome</h1>
+				<h2 class="mb-100 title-border-lg" style="font-family: monospace">to the  <i>Code Cat Blog!</i></h2>
 				<p class="mb-80 mr-5">
-					Something, Something, Something
+					Hey there!
+					My name is Angelica Velez.<br />
+					I am a junior developer located in Chattanooga, TN - 4 years married and have 3 beautiful cats! Since I'm a crazy cat lady,
+					I can't help but let it flow a bit into all aspects of life, hence the title, The Code Cat Blog! 
+					Most likely, I won't speak much on cat science, though I'm sure it'll slip in here and there (maybe my 
+					fur babies will make a cameo every once in a while). <br />
+					My main focus with this blog will be to detail my mental journey through learning to code.
+					This includes crazy late night epiphanies, breaking personal barriers, discussing resources 
+					and research in becoming a programmer and all the tidbits that surface along the way! <br />
+					I'm looking forward to sharing this journey with you and I hope you find some comfort in knowing 
+					you have someone else out there who also feels like they're risking all their nine lives trying to 
+					learn a new skill and change careers! It's not easy, but it is simple, let's get to coding! :) 
+
 				</p>
 				@*<span class="font-secondary text-dark mr-3 mr-sm-5">Follow</span>
 				<ul class="list-inline d-inline-block mb-5">
@@ -38,10 +50,12 @@
 						<div class="post-image">
 							<div class="row">
 								<div class="col-6">
-									@if (post.MediaURL != null)
-									{
-										<img class="img-responsive" src="@post.MediaURL" alt="" />
-									}
+									<span>
+										@if (post.MediaURL != null)
+										{
+											<img class="img-responsive text-center" src="@post.MediaURL" alt="" />
+										}
+									</span>
 								</div>
 							</div>
 						</div>
@@ -49,7 +63,7 @@
 							<div class="col-6">
 								<ul class="list-inline d-flex justify-content-between border-bottom post-meta pb-2 mb-4">
 									<li class="list-inline-item">@post.Created.ToString("MMM dd, yyyy")</li>
-									<li class="list-inline-item"><span class="eta">8 min</span> read</li>
+									@*<li class="list-inline-item"><span class="eta">8 min</span> read</li>*@
 								</ul>
 								<h4 class="mb-4">
 									<a class="text-dark" href="@Url.Action("Details", "BlogPosts", new { slug = post.Slug })">

@@ -153,11 +153,6 @@ namespace AV_Blog.Controllers
                         ModelState.AddModelError("Title", "Invalid Title");
                         return View(blogPost);
                     }
-                    if (db.BlogPosts.Any(p => p.Slug == slug) && db.BlogPosts.Where())
-                    {
-                        ModelState.AddModelError("Title", "The title must be unique.");
-                        return View(blogPost);
-                    }
 
                     blogPost.Slug = slug;
                 }
