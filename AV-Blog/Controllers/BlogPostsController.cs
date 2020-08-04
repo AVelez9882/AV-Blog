@@ -20,6 +20,7 @@ namespace AV_Blog.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: BlogPosts
+        [Authorize(Roles = "Admin, Moderator")]
         public ActionResult Index(int? page, string searchStr)
         {
             ViewBag.Search = searchStr;
@@ -70,6 +71,7 @@ namespace AV_Blog.Controllers
 
         // GET: BlogPosts/Create
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             var blogPostCreate = db.BlogPosts.Create();
@@ -122,6 +124,7 @@ namespace AV_Blog.Controllers
         }
 
         // GET: BlogPosts/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -172,6 +175,7 @@ namespace AV_Blog.Controllers
         }
 
         // GET: BlogPosts/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

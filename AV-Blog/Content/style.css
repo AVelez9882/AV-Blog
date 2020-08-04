@@ -17,8 +17,13 @@ VERSION:	Versoin Number
 }
 
 .linkButton a {
-    color: black
+    color: black;
 }
+
+.linkButton2 a {
+    color: white; 
+}
+
 
 body {
   line-height: 1.5;
@@ -79,6 +84,8 @@ h6, .h6 {
 }
 
 /* Button style */
+
+
 .btn {
   font-size: 15px;
   font-family: "Open Sans", sans-serif;
@@ -112,7 +119,8 @@ h6, .h6 {
 }
 
 .btn-primary:hover {
-  background: #ff8c33;
+  background: #fdefe6;
+  color: black;
 }
 
 .btn-outline-light {
@@ -150,6 +158,11 @@ body {
 ::selection {
   background: #ff8c33;
   color: #fff;
+}
+
+/*text Style*/
+.txtStyle {
+  font-family: monospace;
 }
 
 /* preloader */

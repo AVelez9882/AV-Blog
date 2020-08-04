@@ -23,6 +23,8 @@
 	<link href="~/Content/PagedList.css" rel="stylesheet" />
 	<!--Favicon-->
 	<link rel="icon" href="~/favicon.ico" type="image/x-icon">
+	<!--Login-->
+
 </head>
 
 <body>
@@ -38,17 +40,10 @@
 		</div>
 	</div>
 	<!-- /preloader -->
-	<!-- dividers -->
-	<div class="dividers">
-		<div class="divider"></div>
-		<div class="divider"></div>
-		<div class="divider"></div>
-		<div class="divider"></div>
-	</div>
 
 	<header class="navigation">
 		<nav class="navbar navbar-expand-lg navbar-light">
-			<a class="navbar-brand"><img class="img-fluid" src="~/Images/CodeCatLogo.png" alt="parsa"></a>
+			<a class="navbar-brand" href="https://avelezblog.azurewebsites.net/"><img class="img-fluid" src="~/Images/CodeCatLogo.png" alt="parsa"></a>
 			<button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navogation"
 					aria-controls="navogation" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -76,11 +71,11 @@
 						<a class="nav-link text-uppercase text-dark" @Html.ActionLink("Create", "Create", "BlogPosts")></a>
 					}
 				</ul>
-				<form class="form-inline position-relative ml-lg-4">
-					<input class="form-control px-0 w-100" type="search" placeholder="Search">
+				@*<form class="form-inline position-relative ml-lg-4">
+					<input class="form-control px-0 w-100" type="search" placeholder="Search">*@
 					<!-- <button class="search-icon" type="submit"><i class="ti-search text-dark"></i></button> -->
-					<a href="search.html" class="search-icon"><i class="ti-search text-dark"></i></a>
-				</form>
+					@*<a href="search.html" class="search-icon"><i class="ti-search text-dark"></i></a>
+				</form>*@
 			</div>
 		</nav>
 	</header>
@@ -92,20 +87,20 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-3 col-sm-6 mb-4 mb-md-0">
-						<a href="index.html"><img src="~/Images/CodeCatLogo.png" alt="persa" class="img-fluid"></a>
+						<a href="https://avelezblog.azurewebsites.net/"><img src="~/Images/CodeCatLogo.png" alt="persa" class="img-fluid"></a>
 					</div>
 					<div class="col-md-3 col-sm-6 mb-4 mb-md-0">
 						<h6>Address</h6>
 						<ul class="list-unstyled">
-							<li class="font-secondary text-dark">Sydney</li>
-							<li class="font-secondary text-dark">6 rip carl Avenue CA 90733</li>
+							<li class="font-secondary text-dark"></li>
+							<li class="font-secondary text-dark">Chattanooga, TN</li>
 						</ul>
 					</div>
 					<div class="col-md-3 col-sm-6 mb-4 mb-md-0">
 						<h6>Contact Info</h6>
 						<ul class="list-unstyled">
-							<li class="font-secondary text-dark">Tel: +90 000 333 22</li>
-							<li class="font-secondary text-dark">Mail: exmaple@ymail.com</li>
+							<li class="font-secondary text-dark">Tel: 423-617-5220</li>
+							<li class="font-secondary text-dark">Mail: avelez9882@gmail.com</li>
 						</ul>
 					</div>
 					<div class="col-md-3 col-sm-6 mb-4 mb-md-0">
@@ -126,6 +121,7 @@
 				<script>
 					var CurrentYear = new Date().getFullYear()
 					document.write(CurrentYear)</script> a theme by  <a href="https://themefisher.com/">themefisher.com</a>
+					Modified by Angelica Velez 
 			</p>
 		</div>
 	</footer>
