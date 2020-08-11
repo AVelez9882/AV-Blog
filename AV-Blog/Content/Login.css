@@ -32,7 +32,7 @@ body {
 /* End body rules */
 
 /* Start form  attributes */
-form {
+.newForm {
 	width: 450px;
 	min-height: 500px;
 	height: auto;
@@ -43,7 +43,7 @@ form {
 	background-image: linear-gradient(-225deg, #fff 50%, #FFE6FA 50%);
 }
 	/* form Container */
-	form .con {
+	.newForm .con {
 		display: -webkit-flex;
 		display: flex;
 		-webkit-justify-content: space-around;
@@ -53,6 +53,7 @@ form {
 		margin: 0 auto;
 	}
 
+@Scripts.Render("~/bundles/jqueryval")
 /* the header form form */
 header {
 	margin: 2% auto 10% auto;

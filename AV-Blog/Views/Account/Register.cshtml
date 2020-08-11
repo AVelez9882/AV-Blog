@@ -4,7 +4,7 @@
 	<link href="~/Content/Login.css" rel="stylesheet" />
 </head>
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal newForm con", role = "form" }))
 {
 	@Html.AntiForgeryToken()
 	<h2 class="txtStyle text-center">Create a new account</h2>
