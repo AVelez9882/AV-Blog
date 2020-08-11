@@ -31,6 +31,7 @@ namespace AV_Blog.Controllers
 			return View();
 		}
 
+		[Authorize]
 		public ActionResult Contact()
 		{
 			ViewBag.Message = "Your contact page.";
@@ -40,6 +41,7 @@ namespace AV_Blog.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
+		[Authorize]
 		public async Task<ActionResult> Contact(EmailModel model)
 		{
 			if (ModelState.IsValid)
