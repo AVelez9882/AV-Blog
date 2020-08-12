@@ -209,7 +209,7 @@
     <Content Include="Global.asax" />
     <Content Include="Images\android-chrome-192x192.png" />
     <Content Include="Images\author.jpg" />
-    <Content Include="Images\contact.jpg" />
+    <Content Include="Images\contact %282%29.jpg" />
     <Content Include="Images\featured-post\post-1.jpg" />
     <Content Include="Images\featured-post\post-2.jpg" />
     <Content Include="Images\featured-post\post-3.jpg" />

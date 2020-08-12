@@ -65,19 +65,23 @@
 					<li class="text-uppercase text-dark">
 						@Html.Partial("_LoginPartial")
 					</li>
-					@if (ViewContext.HttpContext.User.IsInRole("Admin"))
-					{
-						<a class="nav-link text-uppercase text-dark" @Html.ActionLink("Create", "Create", "BlogPosts")></a>
-					}
-					@using (Html.BeginForm("Index", "Home", FormMethod.Get, htmlAttributes: new { @class = "form" }))
-					{
-						<div class="controls controls-row search-row">
-							<input id="searchStr" name="searchStr" class="input-block-level" type="text" placeholder="search" />
-							<button id="searchStr" name="searchStr" class="btn btn-primary btn-outline-primary" type="submit">
-								Search
-							</button>
-						</div>
-					}
+					<li class="nav navbar-nav navbar-right linkButton text-center" style="padding: 20px 20px">
+						@if (ViewContext.HttpContext.User.IsInRole("Admin"))
+						{
+							@Html.ActionLink("CREATE", "Create", "BlogPosts")
+						}
+					</li>
+					<li style="padding: 20px 20px">
+						@using (Html.BeginForm("Index", "Home", FormMethod.Get, htmlAttributes: new { @class = "form" }))
+						{
+							<div class="controls controls-row search-row">
+								<input id="searchStr" name="searchStr" class="input-block-level" type="text" placeholder="search" />
+								<button id="searchStr" name="searchStr" class="btn btn-primary btn-outline-primary" type="submit">
+									Search
+								</button>
+							</div>
+						}
+					</li>
 				</ul>
 			</div>
 		</nav>
