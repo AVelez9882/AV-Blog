@@ -23,9 +23,8 @@ namespace AV_Blog.Controllers
 		{
 			ViewBag.Search = searchStr;
 			var blogList = IndexSearch(searchStr);
-			int pageSize = 3; //specifies the number of posts per page 
-			int pageNumber = (page ?? 1); //?? null coalescing operator
-			//I only want blogposts that are marked as Published 
+			int pageSize = 3; 
+			int pageNumber = (page ?? 1); 
 			var allBlogPosts = db.BlogPosts.Where(b => b.Published == true).OrderByDescending(b => b.Created).ToList();
 			var model = allBlogPosts.ToPagedList(pageNumber, pageSize);
 			return View(model);

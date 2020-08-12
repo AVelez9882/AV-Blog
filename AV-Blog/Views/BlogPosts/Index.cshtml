@@ -8,45 +8,85 @@
 	ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+
+<h2 class="text-center">Blog Posts</h2>
 
 @using (Html.BeginForm("Index", "BlogPosts", FormMethod.Get, htmlAttributes: new { @class = "form" }))
 {
 	<div class="controls controls-row search-row">
-		<input id="searchStr" name="searchStr" class="input-block-level" type="text" placeholder="search" />
-		<button id="searchStr" name="searchStr" class="btn btn-success" type="submit">
-			<i class="icone-search"></i>
-		</button>
+		<div class="col-2 offset-10">
+			<input id="searchStr" name="searchStr" class="input-block-level" type="text" placeholder="search" />
+			<button id="searchStr" name="searchStr" class="btn btn-primary btn-outline-primary" type="submit">
+				Search
+			</button>
+		</div>
 	</div>
 }
 <p>
 	@if (User.IsInRole("Admin"))
 	{
-		@Html.ActionLink("Create New", "Create")
+		<div class="col-2 offset-10">
+			<button class="btn btn-outline-primary btn-primary linkButton">@Html.ActionLink("Create New", "Create")</button>
+		</div>
 	}
 </p>
+
+
+<section class="section">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 mb-100">
+				@foreach (var post in Model)
+				{
+					<article data-file="articles/b.html" data-target="article" class="article-full-width">
+						<div class="post-image">
+							<div class="row">
+								<div class="col-6">
+									<span>
+										@if (post.MediaURL != null)
+										{
+											<img class="img-responsive text-center" src="@post.MediaURL" alt="" />
+										}
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="row post-content">
+							<div class="col-6">
+								<ul class="list-inline d-flex justify-content-between border-bottom post-meta pb-2 mb-4">
+									<li class="list-inline-item">@post.Created.ToString("MMM dd, yyyy")</li>
+									@*<li class="list-inline-item"><span class="eta">8 min</span> read</li>*@
+								</ul>
+								<h4 class="mb-4">
+									<a class="text-dark" href="@Url.Action("Details", "BlogPosts", new { slug = post.Slug })">
+										@post.Title
+									</a>
+								</h4>
+								<p class="mb-0 post-summary" href="@Url.Action("Details", "BlogPosts", new { slug = post.Slug })">
+									@post.Abstract
+								</p>
+								<a class="btn btn-transparent mb-4" href="@Url.Action("Details", "BlogPosts", new { slug = post.Slug})">Continue...</a>
+							</div>
+						</div>
+					</article>
+				}
+			</div>
+		</div>
+	</div>
+</section>
+
+@if (User.IsInRole("Admin"))
+{ 
 <table class="table">
 	<tr>
 		<th>
 			@Html.DisplayName("Created")
 		</th>
 		<th>
-			@Html.DisplayName("Updated")
-		</th>
-		<th>
 			@Html.DisplayName("Title")
 		</th>
 		<th>
-			@Html.DisplayName("Body")
-		</th>
-		<th>
 			@Html.DisplayName("Abstract")
-		</th>
-		<th>
-			@Html.DisplayName("MediaURL")
-		</th>
-		<th>
-			@Html.DisplayName("Published?")
 		</th>
 		<th></th>
 	</tr>
@@ -56,25 +96,12 @@
 		<tr>
 			<td>
 				@item.Created.ToString("MMM dd, yyyy")
-				@*@Html.DisplayFor(modelItem => item.Created)*@
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Updated)
 			</td>
 			<td>
 				@Html.DisplayFor(modelItem => item.Title)
 			</td>
 			<td>
-				@Html.Raw(item.Body)
-			</td>
-			<td>
 				@Html.DisplayFor(modelItem => item.Abstract)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.MediaURL)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Published)
 			</td>
 			<td>
 				@if (ViewContext.HttpContext.User.IsInRole("Admin"))
@@ -85,14 +112,21 @@
 				}
 				else
 				{
-					@Html.ActionLink("Details", "Details", new { slug = item.Slug });
+					<button class="btn btn-outline-primary btn-primary linkButton2">@Html.ActionLink("Details", "Details", new { slug = item.Slug })</button>
 				}
 			</td>
 		</tr>
 	}
 
 </table>
+}
 
 
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+<div class="container">
+	<div class="row">
+		<div class="col text-center">
+			Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+			@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+		</div>
+	</div>
+</div>

@@ -5,7 +5,17 @@
 @model IPagedList<BlogPost>
 
 
-
+@using (Html.BeginForm("Index", "BlogPosts", FormMethod.Get, htmlAttributes: new { @class = "form" }))
+{
+	<div class="controls controls-row search-rown">
+		<div class="col-2 offset-10">
+			<input id="searchStr" name="searchStr" class="input-block-level" type="text" placeholder="search" />
+			<button id="searchStr" name="searchStr" class="btn btn-primary btn-outline-primary" type="submit">
+				Search
+			</button>
+		</div>
+	</div>
+}
 <!-- hero area -->
 <section class="hero-section">
 	<div class="container">
