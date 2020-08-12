@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using AV_Blog.Models;
+using PagedList;
+using PagedList.Mvc;
 
 namespace AV_Blog.Controllers
 {
@@ -17,11 +19,37 @@ namespace AV_Blog.Controllers
 
 		public object ConfirgurationManager { get; private set; }
 
-		public ActionResult Index()
+		public ActionResult Index(int? page, string searchStr)
 		{
+			ViewBag.Search = searchStr;
+			var blogList = IndexSearch(searchStr);
+			int pageSize = 3; //specifies the number of posts per page 
+			int pageNumber = (page ?? 1); //?? null coalescing operator
 			//I only want blogposts that are marked as Published 
 			var allBlogPosts = db.BlogPosts.Where(b => b.Published == true).OrderByDescending(b => b.Created).ToList();
-			return View(allBlogPosts);
+			var model = allBlogPosts.ToPagedList(pageNumber, pageSize);
+			return View(model);
+		}
+
+		public IQueryable<BlogPost> IndexSearch(string searchStr)
+		{
+			IQueryable<BlogPost> result = null;
+			if (searchStr != null)
+			{
+				result = db.BlogPosts.AsQueryable();
+				result = result.Where(b => b.Title.Contains(searchStr) ||
+										   b.Body.Contains(searchStr) ||
+										   b.Comments.Any(c => c.CommentBody.Contains(searchStr) ||
+														  c.Author.FirstName.Contains(searchStr) ||
+														  c.Author.LastName.Contains(searchStr) ||
+														  c.Author.DisplayName.Contains(searchStr) ||
+														  c.Author.Email.Contains(searchStr)));
+			}
+			else
+			{
+				result = db.BlogPosts.AsQueryable();
+			}
+			return result.OrderByDescending(p => p.Created);
 		}
 
 		public ActionResult About()

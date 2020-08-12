@@ -57,8 +57,8 @@
 						<a class="nav-link text-uppercase text-dark" @Html.ActionLink("About", "About", "Home")</a>
 					</li>
 					@*<li class="nav-item">
-						<a class="nav-link text-uppercase text-dark" href="category.html">Categories</a>
-					</li>*@
+			<a class="nav-link text-uppercase text-dark" href="category.html">Categories</a>
+		</li>*@
 					<li class="nav-item">
 						<a class="nav-link text-uppercase text-dark" @Html.ActionLink("Contact", "Contact", "Home")</a>
 					</li>
@@ -69,12 +69,16 @@
 					{
 						<a class="nav-link text-uppercase text-dark" @Html.ActionLink("Create", "Create", "BlogPosts")></a>
 					}
+					@using (Html.BeginForm("Index", "Home", FormMethod.Get, htmlAttributes: new { @class = "form" }))
+					{
+						<div class="controls controls-row search-row">
+							<input id="searchStr" name="searchStr" class="input-block-level" type="text" placeholder="search" />
+							<button id="searchStr" name="searchStr" class="btn btn-primary btn-outline-primary" type="submit">
+								Search
+							</button>
+						</div>
+					}
 				</ul>
-				@*<form class="form-inline position-relative ml-lg-4">
-					<input class="form-control px-0 w-100" type="search" placeholder="Search">*@
-					<!-- <button class="search-icon" type="submit"><i class="ti-search text-dark"></i></button> -->
-					@*<a href="search.html" class="search-icon"><i class="ti-search text-dark"></i></a>
-				</form>*@
 			</div>
 		</nav>
 	</header>

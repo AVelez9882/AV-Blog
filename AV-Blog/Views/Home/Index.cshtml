@@ -1,5 +1,9 @@
-﻿
-@model IEnumerable<AV_Blog.Models.BlogPost>
+﻿@using PagedList;
+@using PagedList.Mvc;
+@using AV_Blog.Models;
+
+@model IPagedList<BlogPost>
+
 
 
 <!-- hero area -->
@@ -13,23 +17,23 @@
 					Hey there!
 					My name is Angelica Velez.<br />
 					I am a developer located in Chattanooga, TN - 4 years married and have 3 cats! Since I'm am admitted crazy cat lady,
-					I can't help but let it flow a bit into all aspects of life, hence the title, The Code Cat Blog! 
+					I can't help but let it flow a bit into all aspects of life, hence the title, The Code Cat Blog!
 					Most likely, I won't speak much on cat science, though I'm sure it'll slip in here and there. <br />
 					My main focus with this blog will be to detail my mental journey through learning to code.
-					This includes late night epiphanies, breaking personal barriers, discussing resources 
+					This includes late night epiphanies, breaking personal barriers, discussing resources
 					and research in becoming a programmer and all the tidbits that surface along the way! <br />
-					I'm looking forward to sharing this journey with you and I hope you find some comfort in knowing 
-					you have someone else out there who also feels like they're risking all their nine lives trying to 
+					I'm looking forward to sharing this journey with you and I hope you find some comfort in knowing
+					you have someone else out there who also feels like they're risking all their nine lives trying to
 					learn a new skill and change careers! It's not easy, but it is simple, let's get to work!
 
 				</p>
 				@*<span class="font-secondary text-dark mr-3 mr-sm-5">Follow</span>
-				<ul class="list-inline d-inline-block mb-5">
-					<li class="list-inline-item mx-3"><a href="#" class="text-dark"><i class="ti-facebook"></i></a></li>
-					<li class="list-inline-item mx-3"><a href="#" class="text-dark"><i class="ti-twitter-alt"></i></a></li>
-					<li class="list-inline-item mx-3"><a href="#" class="text-dark"><i class="ti-linkedin"></i></a></li>
-					<li class="list-inline-item mx-3"><a href="#" class="text-dark"><i class="ti-github"></i></a></li>
-				</ul>*@
+					<ul class="list-inline d-inline-block mb-5">
+						<li class="list-inline-item mx-3"><a href="#" class="text-dark"><i class="ti-facebook"></i></a></li>
+						<li class="list-inline-item mx-3"><a href="#" class="text-dark"><i class="ti-twitter-alt"></i></a></li>
+						<li class="list-inline-item mx-3"><a href="#" class="text-dark"><i class="ti-linkedin"></i></a></li>
+						<li class="list-inline-item mx-3"><a href="#" class="text-dark"><i class="ti-github"></i></a></li>
+					</ul>*@
 			</div>
 			<div class="col-lg-6 text-right">
 				<img class="img-fluid" src="~/Images/profile.jpg" alt="banner-image">
@@ -80,27 +84,27 @@
 			</div>
 		</div>
 		@*<div class="row">
-			<div class="col-12">
-				<nav>
-					<ul class="pagination justify-content-center align-items-center">
-						<li class="page-item">
-							<span class="page-link">&laquo; Previous</span>
-						</li>
-						<li class="page-item"><a class="page-link" href="#">01</a></li>
-						<li class="page-item active">
-							<span class="page-link">02</span>
-						</li>
-						<li class="page-item"><a class="page-link" href="#">03</a></li>
-						<li class="page-item"><a class="page-link" href="#">04</a></li>
-						<li class="page-item"><a class="page-link" href="#">05</a></li>
-						<li class="page-item"><a class="page-link" href="#">06</a></li>
-						<li class="page-item">
-							<a class="page-link" href="#">Next &raquo;</a>
-						</li>
-					</ul>
-				</nav>
-			</div>
-		</div>*@
+				<div class="col-12">
+					<nav>
+						<ul class="pagination justify-content-center align-items-center">
+							<li class="page-item">
+								<span class="page-link">&laquo; Previous</span>
+							</li>
+							<li class="page-item"><a class="page-link" href="#">01</a></li>
+							<li class="page-item active">
+								<span class="page-link">02</span>
+							</li>
+							<li class="page-item"><a class="page-link" href="#">03</a></li>
+							<li class="page-item"><a class="page-link" href="#">04</a></li>
+							<li class="page-item"><a class="page-link" href="#">05</a></li>
+							<li class="page-item"><a class="page-link" href="#">06</a></li>
+							<li class="page-item">
+								<a class="page-link" href="#">Next &raquo;</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>*@
 	</div>
 </section>
 <!-- /blog post -->
@@ -112,3 +116,12 @@
 	</div>
 </section>
 <!-- /instagram -->
+
+<div class="container">
+	<div class="row">
+		<div class="col text-center">
+			Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+			@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+		</div>
+	</div>
+</div>
