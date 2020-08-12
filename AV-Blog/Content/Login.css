@@ -15,9 +15,9 @@ body {
 	background-image: linear-gradient(to top, #bc6bcf 0%, #FFE6FA 100%);
 	background-attachment: fixed;
 	background-repeat: no-repeat;
-	font-family: 'Vibur', cursive;
+	/*font-family: 'Vibur', cursive;*/
 	/*   the main font */
-	font-family: 'Abel', sans-serif;
+	/*font-family: 'Abel', sans-serif;*/
 	opacity: .95;
 }
 
