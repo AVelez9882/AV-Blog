@@ -232,6 +232,8 @@
     <Content Include="Images\post-img.jpg" />
     <Content Include="Images\post-single.jpg" />
     <Content Include="Images\profile.jpg" />
+    <Content Include="Images\profile1 %282%29.jpg" />
+    <Content Include="Images\profile2.jpg" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\headroom.js" />
     <Content Include="Scripts\instafeed.min.js" />
