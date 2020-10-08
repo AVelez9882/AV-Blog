@@ -145,7 +145,7 @@ namespace AV_Blog.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Title,Body,Abstract,MediaURL,Published,Created,Updated")] BlogPost blogPost, HttpPostedFileBase image)
+        public ActionResult Edit([Bind(Include = "Id,Title,Body,Slug,Abstract,MediaURL,Published,Created,Updated")] BlogPost blogPost, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
@@ -167,10 +167,12 @@ namespace AV_Blog.Controllers
                     image.SaveAs(Path.Combine(Server.MapPath("~/Uploads/"), fileName));
                     blogPost.MediaURL = "/Uploads/" + fileName;
                 }
+
                 blogPost.Updated = DateTime.Now;
                 db.Entry(blogPost).State = EntityState.Modified;
-                db.SaveChanges();
+				db.SaveChanges();
                 return RedirectToAction("Index");
+
             }
             return View(blogPost);
         }

@@ -24,6 +24,9 @@ VERSION:	Versoin Number
     color: white; 
 }
 
+.imageAlign {
+    width:100px;
+}
 
 body {
   line-height: 1.5;
