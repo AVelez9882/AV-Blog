@@ -18,7 +18,6 @@
 		@Html.HiddenFor(model => model.Id)
 		@Html.HiddenFor(model => model.MediaURL)
 		@Html.HiddenFor(model => model.Created)
-		@Html.HiddenFor(model => model.Published)
 		@Html.HiddenFor(model => model.Slug)
 
 
@@ -59,7 +58,7 @@
 			@Html.LabelFor(model => model.Published, htmlAttributes: new { @class = "control-label col-md-2" })
 			<div class="col-md-10">
 				<div class="checkbox">
-					@Html.EditorFor(model => model.Published)
+					@Html.CheckBoxFor(model => model.Published)
 					@Html.ValidationMessageFor(model => model.Published, "", new { @class = "text-danger" })
 				</div>
 			</div>

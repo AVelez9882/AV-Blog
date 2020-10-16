@@ -170,7 +170,7 @@ namespace AV_Blog.Controllers
 
                 blogPost.Updated = DateTime.Now;
                 db.Entry(blogPost).State = EntityState.Modified;
-				db.SaveChanges();
+                db.SaveChanges();
                 return RedirectToAction("Index");
 
             }
